@@ -130,12 +130,6 @@ fun <T> DropTarget(
         val data = if (isCurrentDropTarget && !dragInfo.isDragging) {
             dragInfo.dataToDrop as T?
         } else null
-
-        LaunchedEffect(key1 = true) {
-            println("isCurrentDropTarget==== $isCurrentDropTarget")
-            println("data==== $data")
-        }
-
         content(isCurrentDropTarget, data)
     }
 }
