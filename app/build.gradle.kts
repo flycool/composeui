@@ -68,4 +68,5 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     implementation("androidx.compose.material3:material3-window-size-class:1.1.1")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.10")
 }
