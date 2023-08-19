@@ -33,6 +33,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 
+/**
+ * use:
+ * val windowClass = calculateWindowSizeClass(activity = this)
+   val isShowNavigationRail = windowClass.widthSizeClass != WindowWidthSizeClass.Compact
+   NavigationRailScreen(isShowNavigationRail = isShowNavigationRail)
+ */
+
 @Composable
 fun NavigationRailScreen(
     isShowNavigationRail: Boolean

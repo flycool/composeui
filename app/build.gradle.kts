@@ -69,4 +69,6 @@ dependencies {
 
     implementation("androidx.compose.material3:material3-window-size-class:1.1.1")
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.10")
+
+    implementation("io.coil-kt:coil-compose:2.4.0")
 }
