@@ -1,31 +1,47 @@
 package com.compose.sample.composeui
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.unit.dp
+import androidx.work.Constraints
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import coil.compose.AsyncImage
-import com.compose.sample.composeui.intentfilter.ImageViewModel
-import com.compose.sample.composeui.navigationbar.NavigationRailScreen
 import com.compose.sample.composeui.ui.theme.ComposeuiTheme
+import com.compose.sample.composeui.worker.ImageCompressWorker
+import com.compose.sample.composeui.worker.ImageWorkerViewModel
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 class MainActivity : ComponentActivity() {
 
-    private val imageViewModel by viewModels<ImageViewModel>()
+    private lateinit var workManager: WorkManager
+    private val imageViewModel by viewModels<ImageWorkerViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        workManager = WorkManager.getInstance(applicationContext)
         setContent {
             ComposeuiTheme {
                 // A surface container using the 'background' color from the theme
@@ -33,10 +49,34 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    imageViewModel.uri?.let {
-                        AsyncImage(model = it, contentDescription = null)
+                    val workerResult = imageViewModel.workId?.let { id ->
+                        workManager.getWorkInfoByIdLiveData(id).observeAsState().value
                     }
-
+                    LaunchedEffect(key1 = workerResult) {
+                        if (workerResult?.outputData != null) {
+                            val filePath =
+                                workerResult.outputData.getString(ImageCompressWorker.KEY_RESULT_PATH)
+                            filePath?.let {
+                                val bitmap = BitmapFactory.decodeFile(it)
+                                imageViewModel.updateBitmap(bitmap)
+                            }
+                        }
+                    }
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        imageViewModel.uri?.let {
+                            Text(text = "Uncompressed photo:")
+                            AsyncImage(model = it, contentDescription = null)
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                        imageViewModel.bitmap?.let {
+                            Text(text = "compressed photo:${it.byteCount} bytes")
+                            Image(bitmap = it.asImageBitmap(), contentDescription = null)
+                        }
+                    }
                 }
             }
         }
@@ -48,9 +88,21 @@ class MainActivity : ComponentActivity() {
             intent?.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
         } else {
             intent?.getParcelableExtra(Intent.EXTRA_STREAM)
-        }
-        println("new intent:==$uri")
+        } ?: return
+
         imageViewModel.updateUri(uri)
+
+        val request = OneTimeWorkRequestBuilder<ImageCompressWorker>()
+            .setInputData(
+                workDataOf(
+                    ImageCompressWorker.KEY_CONTENT_URI to uri.toString(),
+                    ImageCompressWorker.KEY_COMPRESS_THRESHOLD to 1024 * 20L
+                )
+            )
+            .setConstraints(Constraints(requiresStorageNotLow = true))
+            .build()
+        imageViewModel.updateWorkId(request.id)
+        workManager.enqueue(request)
     }
 }
 

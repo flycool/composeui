@@ -71,4 +71,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.10")
 
     implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.0")
+
 }
