@@ -49,34 +49,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val workerResult = imageViewModel.workId?.let { id ->
-                        workManager.getWorkInfoByIdLiveData(id).observeAsState().value
-                    }
-                    LaunchedEffect(key1 = workerResult) {
-                        if (workerResult?.outputData != null) {
-                            val filePath =
-                                workerResult.outputData.getString(ImageCompressWorker.KEY_RESULT_PATH)
-                            filePath?.let {
-                                val bitmap = BitmapFactory.decodeFile(it)
-                                imageViewModel.updateBitmap(bitmap)
-                            }
-                        }
-                    }
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        imageViewModel.uri?.let {
-                            Text(text = "Uncompressed photo:")
-                            AsyncImage(model = it, contentDescription = null)
-                        }
-                        Spacer(modifier = Modifier.height(16.dp))
-                        imageViewModel.bitmap?.let {
-                            Text(text = "compressed photo:${it.byteCount} bytes")
-                            Image(bitmap = it.asImageBitmap(), contentDescription = null)
-                        }
-                    }
+
                 }
             }
         }
