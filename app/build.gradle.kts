@@ -49,6 +49,14 @@ android {
     }
 }
 
+kotlin {
+    sourceSets.all {
+        languageSettings {
+            languageVersion = "2.0"
+        }
+    }
+}
+
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
