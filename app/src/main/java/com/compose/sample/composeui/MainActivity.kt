@@ -29,6 +29,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import coil.compose.AsyncImage
+import com.compose.sample.composeui.permission.OptionalSinglePermission
 import com.compose.sample.composeui.ui.theme.ComposeuiTheme
 import com.compose.sample.composeui.worker.ImageCompressWorker
 import com.compose.sample.composeui.worker.ImageWorkerViewModel
@@ -49,7 +50,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    OptionalSinglePermission()
                 }
             }
         }

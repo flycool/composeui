@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.compose.sample.composeui"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.compose.sample.composeui"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -58,6 +58,10 @@ android {
 //}
 
 dependencies {
+
+    // Accompanist permission
+    // https://google.github.io/accompanist/permissions/
+    implementation("com.google.accompanist:accompanist-permissions:0.33.2-alpha")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")

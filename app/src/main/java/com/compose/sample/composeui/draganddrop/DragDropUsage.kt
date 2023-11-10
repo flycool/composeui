@@ -29,13 +29,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HorizontalPagerContent() {
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(
+        initialPage = 2,
+        initialPageOffsetFraction = 0f,
+        pageCount = { 3 }
+    )
 // Wrap the entire horizontal pager with LongPressDraggable
     LongPressDraggable {
 
-        HorizontalPager(state = pagerState, pageCount = 2) { pageIndex ->
+        HorizontalPager(state = pagerState) { pageIndex ->
             when (pageIndex) {
                 0 -> Page1Content(pagerState)
                 1 -> {
