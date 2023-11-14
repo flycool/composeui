@@ -79,11 +79,16 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    implementation("androidx.compose.material3:material3-window-size-class:1.1.1")
+    implementation("androidx.compose.material3:material3-window-size-class:1.1.2")
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.10")
 
     implementation("io.coil-kt:coil-compose:2.4.0")
     implementation("androidx.work:work-runtime-ktx:2.8.1")
-    implementation("androidx.compose.runtime:runtime-livedata:1.5.0")
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.3")
+
+    //lifecycle
+    implementation("androidx.fragment:fragment-ktx:1.6.0-alpha06")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
 }
