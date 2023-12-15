@@ -1,0 +1,76 @@
+[versions]
+accompanist-permissions = "0.33.2-alpha"
+core-ktx = "1.9.0"
+lifecycle-runtime-ktx = "2.6.2"
+activity-compose = "1.7.0"
+compose-bom = "2023.03.00"
+junit = "4.13.2"
+androidx-junit = "1.1.5"
+espresso-core = "3.5.1"
+material3-window-size = "1.1.2"
+okhttp = "5.0.0-alpha.10"
+coil-compose = "2.4.0"
+work-runtime-ktx = "2.8.1"
+compose-runtime-livedata = "1.5.3"
+fragment-ktx = "1.6.0-alpha06"
+lifecycle-common-java8 = "2.6.2"
+agp = "8.1.1"
+kotlin = "1.8.10"
+appcompat = "1.6.1"
+material = "1.9.0"
+
+projectApplicationId = "com.compose.sample.composeui"
+projectVersionName = "1.0"
+projectVersionCode = "1"
+projectMinSdkVersion = "24"
+projectTargetSdkVersion = "34"
+projectCompileSdkVersion = "34"
+kotlinCompilerExtensionVersion = "1.4.3"
+
+
+[libraries]
+
+google-accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist-permissions" }
+
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-ui-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-ui-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-material3-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
+androidx-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+compose-ui-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+compose-ui-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+
+androidx-compose-material3-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "material3-window-size" }
+okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+io-coil-kt = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-compose" }
+androidx-work = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work-runtime-ktx" }
+compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "compose-runtime-livedata" }
+
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment-ktx" }
+androidx-lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle-common-java8" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+# Dependencies of the included build-logic
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+
+[plugins]
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+
+
+
+
+
+
