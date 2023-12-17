@@ -29,6 +29,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import coil.compose.AsyncImage
+import com.compose.sample.composeui.emoji.FireEmoji
 import com.compose.sample.composeui.network.ConnectivityStatus
 import com.compose.sample.composeui.permission.OptionalSinglePermission
 import com.compose.sample.composeui.ui.theme.ComposeuiTheme
@@ -51,7 +52,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ConnectivityStatus()
+                    FireEmoji()
                 }
             }
         }
