@@ -1,6 +1,8 @@
 package com.compose.sample.composeui.emoji
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.AnimationEndReason
+import androidx.compose.animation.core.AnimationResult
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
@@ -35,9 +37,6 @@ fun FireEmoji() {
         val configuration = LocalConfiguration.current
         val width = configuration.screenWidthDp
         val height = configuration.screenHeightDp
-        val targetX = Random.nextInt(0, width)
-        val targetY = Random.nextInt(0, (height * 0.2).toInt())
-        val rotation = Random.nextInt(-90, 90).toFloat()
 
         val emojis = remember {
             mutableStateListOf<MyEmoji>()
@@ -49,9 +48,9 @@ fun FireEmoji() {
                 emojis.add(
                     MyEmoji(
                         id = UUID.randomUUID().toString(),
-                        rotation = rotation,
-                        offsetX = targetX,
-                        offsetY = targetY
+                        rotation = Random.nextInt(-90, 90).toFloat(),
+                        offsetX = Random.nextInt(0, width),
+                        offsetY = Random.nextInt(0, (height * 0.2).toInt())
 
                     )
                 )
@@ -79,8 +78,6 @@ fun SingleEmojiContainer(
 ) {
     val configuration = LocalConfiguration.current
 
-    println("width: ${configuration.screenWidthDp}")
-
     val startPoint = IntOffset(
         x = configuration.screenWidthDp / 2,
         y = (configuration.screenHeightDp * 0.9f).toInt()
@@ -102,13 +99,14 @@ fun SingleEmojiContainer(
         val rotation1 =
             async { rotationAnimatable.animateTo(1f, animationSpec = tween(1000)) }
         awaitAll(offsetX, offsetY, rotation1, opacity)
-        opacityAnimatable.animateTo(0f, animationSpec = tween((2000)))
-        onAnimationFinished()
+        val result = opacityAnimatable.animateTo(0f, animationSpec = tween((2000)))
+        if(result.endReason == AnimationEndReason.Finished) {
+            onAnimationFinished()
+        }
     }
 
 
     Box(modifier = Modifier
-        .fillMaxSize()
         .offset {
             IntOffset(
                 x = offsetXAnimatable.value.dp.roundToPx(),
