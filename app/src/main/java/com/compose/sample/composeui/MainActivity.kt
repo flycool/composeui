@@ -1,5 +1,6 @@
 package com.compose.sample.composeui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -7,19 +8,26 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.work.Constraints
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
+import com.compose.sample.PROJECT_GITHUB_URL
 import com.compose.sample.composeui.ui.theme.ComposeuiTheme
 import com.compose.sample.composeui.worker.ImageCompressWorker
 import com.compose.sample.composeui.worker.ImageWorkerViewModel
 import com.compose.sample.funui.pickmedia.PickVisualMedia
+import com.compose.sample.goToScourceCode
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 class MainActivity : ComponentActivity() {
@@ -27,6 +35,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var workManager: WorkManager
     private val imageViewModel by viewModels<ImageWorkerViewModel>()
 
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         workManager = WorkManager.getInstance(applicationContext)
@@ -37,7 +46,18 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PickVisualMedia()
+                    val context = LocalContext.current
+                    Scaffold(
+                        bottomBar = {
+                            BottomAppBar {
+                                Text(text = "source code ->", modifier = Modifier.clickable {
+                                    context.goToScourceCode()
+                                })
+                            }
+                        }
+                    ) {
+                        PickVisualMedia()
+                    }
                 }
             }
         }
