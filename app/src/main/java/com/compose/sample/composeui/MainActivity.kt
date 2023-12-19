@@ -27,6 +27,7 @@ import com.compose.sample.composeui.ui.theme.ComposeuiTheme
 import com.compose.sample.composeui.worker.ImageCompressWorker
 import com.compose.sample.composeui.worker.ImageWorkerViewModel
 import com.compose.sample.funui.pickmedia.PickVisualMedia
+import com.compose.sample.funui.touchevent.TouchHeldButton
 import com.compose.sample.goToScourceCode
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     ) {
-                        PickVisualMedia()
+                        TouchHeldButton()
                     }
                 }
             }
