@@ -60,7 +60,7 @@ fun Modifier.onTouchHeld(
 fun Modifier.onTouchHeldAnimated(
     easing: Easing = FastOutSlowInEasing,
     pollDelay: Duration = 500.milliseconds,
-    targetPollDelay: Duration = pollDelay,
+    targetPollDelay: Duration = 100.milliseconds,
     animationDuration: Duration = 5.seconds,
     onTouchHeld: () -> Unit
 ) = composed {
@@ -84,11 +84,9 @@ fun Modifier.onTouchHeldAnimated(
                     delay = animationSpec.getValueFromNanos(
                         playTimeNanos = currentPlayTime.inWholeNanoseconds,
                         initialValue = pollDelay.inWholeMilliseconds.toFloat(),
-                        targetValue = 0f,
+                        targetValue = targetPollDelay.inWholeMilliseconds.toFloat(),
                         initialVelocity = 0f
                     ).toInt().milliseconds
-
-                    println("delay==$delay")
                 }
             }
             waitForUpOrCancellation()
