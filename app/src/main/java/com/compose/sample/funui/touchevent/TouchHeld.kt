@@ -33,6 +33,9 @@ import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.ExperimentalTime
 
+/**
+ * 2023-5-25 Creating Touch Held Down Modifier with Jetpack Compose
+ */
 @Composable
 fun Modifier.onTouchHeld(
     pollyDelay: Duration,

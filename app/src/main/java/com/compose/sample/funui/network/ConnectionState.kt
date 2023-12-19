@@ -1,4 +1,4 @@
-package com.compose.sample.composeui.network
+package com.compose.sample.funui.network
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 
 @Composable
@@ -67,6 +68,8 @@ fun Context.observeConnectivityAsFlow() = callbackFlow {
 
     val networkRequest = NetworkRequest.Builder()
         .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        .addCapability(NetworkCapabilities.NET_CAPABILITY_SUPL)
+        .addCapability(NetworkCapabilities.NET_CAPABILITY_MMS)
         .build()
 
     connectivityManager.registerNetworkCallback(networkRequest, callback)
@@ -77,7 +80,7 @@ fun Context.observeConnectivityAsFlow() = callbackFlow {
     awaitClose {
         connectivityManager.unregisterNetworkCallback(callback)
     }
-}
+}.distinctUntilChanged()
 
 fun NetworkCallback(callback: (ConnectionState) -> Unit): ConnectivityManager.NetworkCallback {
     return object : ConnectivityManager.NetworkCallback() {
