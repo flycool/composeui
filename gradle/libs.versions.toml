@@ -15,8 +15,8 @@ compose-runtime-livedata = "1.5.3"
 fragment-ktx = "1.6.0-alpha06"
 lifecycle-common-java8 = "2.6.2"
 agp = "8.1.1"
-kotlin = "1.8.10"
-#kotlin = "1.9.0"
+#kotlin = "1.8.10"
+kotlin = "1.9.0"
 appcompat = "1.6.1"
 material = "1.9.0"
 
@@ -26,7 +26,7 @@ projectVersionCode = "1"
 projectMinSdkVersion = "24"
 projectTargetSdkVersion = "34"
 projectCompileSdkVersion = "34"
-kotlinCompilerExtensionVersion = "1.4.3"
+kotlinCompilerExtensionVersion = "1.5.0"
 
 
 [libraries]
