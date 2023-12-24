@@ -18,15 +18,20 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.work.Constraints
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.compose.sample.PROJECT_GITHUB_URL
+import com.compose.sample.composeui.tabrow.SwipeableTabRow
 import com.compose.sample.composeui.ui.theme.ComposeuiTheme
 import com.compose.sample.composeui.worker.ImageCompressWorker
 import com.compose.sample.composeui.worker.ImageWorkerViewModel
 import com.compose.sample.funui.pickmedia.PickVisualMedia
+import com.compose.sample.funui.pinchzoom.PinchZoom
+import com.compose.sample.funui.splashscreen.SplashScreenViewModel
+import com.compose.sample.funui.splashscreen.onExitSplashScreenAnimation
 import com.compose.sample.funui.touchevent.TouchHeldButton
 import com.compose.sample.goToScourceCode
 
@@ -35,11 +40,22 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var workManager: WorkManager
     private val imageViewModel by viewModels<ImageWorkerViewModel>()
+    private val splashScreenViewModel by viewModels<SplashScreenViewModel>()
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         workManager = WorkManager.getInstance(applicationContext)
+
+        installSplashScreen().apply {
+            setKeepOnScreenCondition {
+                !splashScreenViewModel.ready.value
+            }
+            setOnExitAnimationListener { screen ->
+                onExitSplashScreenAnimation(screen)
+            }
+        }
+
         setContent {
             ComposeuiTheme {
                 // A surface container using the 'background' color from the theme
@@ -57,7 +73,7 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     ) {
-                        TouchHeldButton()
+                        PinchZoom()
                     }
                 }
             }
