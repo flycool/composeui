@@ -1,4 +1,4 @@
-package max.dev.ext
+package max.dev
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog

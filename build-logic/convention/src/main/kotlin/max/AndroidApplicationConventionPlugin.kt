@@ -1,7 +1,9 @@
 package max
 
 import com.android.build.api.dsl.ApplicationExtension
-import max.dev.ext.libs
+import max.dev.configureCompose
+import max.dev.configureKotlinAndroid
+import max.dev.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

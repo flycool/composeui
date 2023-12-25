@@ -16,5 +16,9 @@ gradlePlugin {
             id = "composeui.android.application"
             implementationClass = "max.AndroidApplicationConventionPlugin"
         }
+        register("androidHilt") {
+            id = "composeui.android.hilt"
+            implementationClass = "max.AndroidHiltConventionPlugin"
+        }
     }
 }

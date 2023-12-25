@@ -1,5 +1,6 @@
 plugins {
     id("composeui.android.application")
+    id("composeui.android.hilt")
 }
 
 android {
@@ -44,7 +45,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.compose.bom))
+    //implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.ui.ui.graphics)
     implementation(libs.compose.ui.ui.tooling.preview)
@@ -53,7 +54,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.ext.junit)
     androidTestImplementation(libs.androidx.espresso)
-    androidTestImplementation(platform(libs.compose.bom))
+    //androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.ui.test.junit4)
     debugImplementation(libs.compose.ui.ui.tooling)
     debugImplementation(libs.compose.ui.ui.test.manifest)
