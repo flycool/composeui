@@ -22,6 +22,7 @@ appcompat = "1.6.1"
 material = "1.9.0"
 splashscreen = "1.0.1"
 hilt = "2.47"
+androidxNavigation = "2.5.3"
 
 
 projectApplicationId = "com.compose.sample.composeui"
@@ -71,6 +72,8 @@ splashscreen = { group = "androidx.core", name = "core-splashscreen", version.re
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 
 # Dependencies of the included build-logic
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }

@@ -71,4 +71,5 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
     implementation(libs.splashscreen)
+    implementation(libs.androidx.navigation.compose)
 }
