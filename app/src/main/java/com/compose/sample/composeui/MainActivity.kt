@@ -28,6 +28,7 @@ import com.compose.sample.composeui.tabrow.SwipeableTabRow
 import com.compose.sample.composeui.ui.theme.ComposeuiTheme
 import com.compose.sample.composeui.worker.ImageCompressWorker
 import com.compose.sample.composeui.worker.ImageWorkerViewModel
+import com.compose.sample.funui.multiplebackstacks.MultilpleBackStacks
 import com.compose.sample.funui.pickmedia.PickVisualMedia
 import com.compose.sample.funui.pinchzoom.PinchZoom
 import com.compose.sample.funui.splashscreen.SplashScreenViewModel
@@ -64,17 +65,18 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val context = LocalContext.current
-                    Scaffold(
-                        bottomBar = {
-                            BottomAppBar {
-                                Text(text = "source code ->", modifier = Modifier.clickable {
-                                    context.goToScourceCode()
-                                })
-                            }
-                        }
-                    ) {
-                        PinchZoom()
-                    }
+//                    Scaffold(
+//                        bottomBar = {
+//                            BottomAppBar {
+//                                Text(text = "source code ->", modifier = Modifier.clickable {
+//                                    context.goToScourceCode()
+//                                })
+//                            }
+//                        }
+//                    ) {
+//
+//                    }
+                    MultilpleBackStacks()
                 }
             }
         }

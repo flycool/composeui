@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">composeui</string>
+    <string name="not_connected_to_internet">not conneted to internet</string>
 </resources>
