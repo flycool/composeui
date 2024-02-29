@@ -72,4 +72,6 @@ dependencies {
 
     implementation(libs.splashscreen)
     implementation(libs.androidx.navigation.compose)
+
+    implementation (libs.graphics.shapes)
 }
