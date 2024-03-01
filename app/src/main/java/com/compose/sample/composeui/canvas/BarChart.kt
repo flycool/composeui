@@ -27,7 +27,7 @@ fun Chart() {
 }
 
 @Composable
-fun BarChart(data: List<DataPoint>) {
+private fun BarChart(data: List<DataPoint>) {
     val maxBarValue = data.maxOf { it.value }
     Canvas(
         modifier = Modifier

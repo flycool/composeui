@@ -31,6 +31,17 @@ import com.compose.sample.composeui.ui.theme.Purple80
 import com.compose.sample.composeui.ui.theme.PurpleGrey40
 
 @Composable
+fun AnimatedCircularProgressIndicator() {
+    AnimatedCircularProgressIndicator(
+        currentValue = 15,
+        maxValue = 20,
+        progressBackgroundColor = Purple80,
+        progressIndicatorColor = PurpleGrey40,
+        completedColor = Purple40
+    )
+}
+
+@Composable
 fun AnimatedCircularProgressIndicator(
     currentValue: Int,
     maxValue: Int,

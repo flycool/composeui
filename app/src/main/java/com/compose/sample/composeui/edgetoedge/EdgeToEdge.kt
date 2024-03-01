@@ -38,9 +38,7 @@ import androidx.navigation.navArgument
 import com.compose.sample.composeui.R
 
 @Composable
-fun NavEdgeToEdgeScreen(
-    window: Window
-) {
+fun NavEdgeToEdgeScreen() {
     val navController = rememberNavController()
     var showDialog by remember {
         mutableIntStateOf(0)

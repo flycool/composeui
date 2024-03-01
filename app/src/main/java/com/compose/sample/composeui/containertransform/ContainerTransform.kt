@@ -50,7 +50,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun HomeScreen() {
+fun ContainerTransformScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
         HotContent()
         FabContainer(modifier = Modifier.align(Alignment.BottomEnd))
@@ -278,5 +278,5 @@ enum class ContainerState {
 @Preview
 @Composable
 fun ContainerTransformPreview() {
-    HomeScreen()
+    ContainerTransformScreen()
 }

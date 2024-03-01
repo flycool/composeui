@@ -24,7 +24,7 @@ appcompat = "1.6.1"
 material = "1.9.0"
 splashscreen = "1.0.1"
 hilt = "2.47"
-androidxNavigation = "2.5.3"
+androidxNavigation = "2.7.6"
 
 
 projectApplicationId = "com.compose.sample.composeui"
