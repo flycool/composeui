@@ -26,6 +26,7 @@ import com.compose.sample.composeui.annotationstring.BasicTextStyle
 import com.compose.sample.composeui.canvas.BouncingBallGame
 import com.compose.sample.composeui.containertransform.AddContentScreen
 import com.compose.sample.composeui.containertransform.ContainerTransformScreen
+import com.compose.sample.composeui.custommodifier.GreyscaleScene
 import com.compose.sample.composeui.decorationtextfield.DecorationTextField
 import com.compose.sample.composeui.draganddrop.HorizontalPagerContent
 import com.compose.sample.composeui.dragfood.DragDropMainScreen
@@ -98,6 +99,7 @@ class MainActivity : ComponentActivity() {
                                 Destination.polygonloader -> PolygonShapeASLoader()
                                 Destination.tabrow -> SwipeableTabRow()
                                 Destination.visualtransformation -> TextFieldVisualTransformation()
+                                Destination.CustomModifier -> GreyscaleScene(isDisabled = true)
                             }
                         }
                     }

@@ -15,5 +15,6 @@ enum class Destination(val route: String) {
     permission("permission"),
     polygonloader("polygonloader"),
     tabrow("tabrow"),
-    visualtransformation("visualtransformation")
+    visualtransformation("visualtransformation"),
+    CustomModifier("custommodifier"),
 }
