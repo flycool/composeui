@@ -17,4 +17,5 @@ enum class Destination(val route: String) {
     tabrow("tabrow"),
     visualtransformation("visualtransformation"),
     CustomModifier("custommodifier"),
+    TimeLine("timeline"),
 }

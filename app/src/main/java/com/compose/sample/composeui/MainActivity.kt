@@ -40,6 +40,8 @@ import com.compose.sample.composeui.overlaprow.CustomOverlappingRow
 import com.compose.sample.composeui.permission.OptionalSinglePermission
 import com.compose.sample.composeui.polygonShapeASLoader.PolygonShapeASLoader
 import com.compose.sample.composeui.tabrow.SwipeableTabRow
+import com.compose.sample.composeui.timeline.DATA
+import com.compose.sample.composeui.timeline.TimelineContent
 import com.compose.sample.composeui.ui.theme.ComposeuiTheme
 import com.compose.sample.composeui.visualTransformation.TextFieldVisualTransformation
 import com.compose.sample.composeui.worker.ImageCompressWorker
@@ -100,6 +102,7 @@ class MainActivity : ComponentActivity() {
                                 Destination.tabrow -> SwipeableTabRow()
                                 Destination.visualtransformation -> TextFieldVisualTransformation()
                                 Destination.CustomModifier -> GreyscaleScene(isDisabled = true)
+                                Destination.TimeLine -> TimelineContent(stages = DATA)
                             }
                         }
                     }

@@ -143,9 +143,9 @@ private fun GreyscaleScenePreview() {
 }
 
 
-
-
-
+fun main() {
+    println("heello")
+}
 
 
 
