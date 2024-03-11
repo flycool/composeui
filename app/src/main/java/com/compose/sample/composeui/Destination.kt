@@ -18,4 +18,5 @@ enum class Destination(val route: String) {
     visualtransformation("visualtransformation"),
     CustomModifier("custommodifier"),
     TimeLine("timeline"),
+    InvitationCard("invitationcard"),
 }

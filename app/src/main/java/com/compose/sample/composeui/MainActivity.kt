@@ -34,6 +34,7 @@ import com.compose.sample.composeui.dragfood.model.foodItems
 import com.compose.sample.composeui.edgetoedge.NavEdgeToEdgeScreen
 import com.compose.sample.composeui.emoji.FireEmoji
 import com.compose.sample.composeui.indicator.AnimatedCircularProgressIndicator
+import com.compose.sample.composeui.invitationcard.ThreadsInviteCard
 import com.compose.sample.composeui.navigationbar.BottomNavBarScreen
 import com.compose.sample.composeui.nestedscroll.SampleNetfixLazyScreen
 import com.compose.sample.composeui.overlaprow.CustomOverlappingRow
@@ -103,6 +104,7 @@ class MainActivity : ComponentActivity() {
                                 Destination.visualtransformation -> TextFieldVisualTransformation()
                                 Destination.CustomModifier -> GreyscaleScene(isDisabled = true)
                                 Destination.TimeLine -> TimelineContent(stages = DATA)
+                                Destination.InvitationCard -> ThreadsInviteCard()
                             }
                         }
                     }
