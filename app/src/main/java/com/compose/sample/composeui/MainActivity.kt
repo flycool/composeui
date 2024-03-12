@@ -40,6 +40,7 @@ import com.compose.sample.composeui.nestedscroll.SampleNetfixLazyScreen
 import com.compose.sample.composeui.overlaprow.CustomOverlappingRow
 import com.compose.sample.composeui.permission.OptionalSinglePermission
 import com.compose.sample.composeui.polygonShapeASLoader.PolygonShapeASLoader
+import com.compose.sample.composeui.slider.CustomSlider
 import com.compose.sample.composeui.tabrow.SwipeableTabRow
 import com.compose.sample.composeui.timeline.DATA
 import com.compose.sample.composeui.timeline.TimelineContent
@@ -105,6 +106,7 @@ class MainActivity : ComponentActivity() {
                                 Destination.CustomModifier -> GreyscaleScene(isDisabled = true)
                                 Destination.TimeLine -> TimelineContent(stages = DATA)
                                 Destination.InvitationCard -> ThreadsInviteCard()
+                                Destination.slider -> CustomSlider()
                             }
                         }
                     }
