@@ -35,6 +35,7 @@ import com.compose.sample.composeui.edgetoedge.NavEdgeToEdgeScreen
 import com.compose.sample.composeui.emoji.FireEmoji
 import com.compose.sample.composeui.indicator.AnimatedCircularProgressIndicator
 import com.compose.sample.composeui.invitationcard.ThreadsInviteCard
+import com.compose.sample.composeui.musicappui.playerprogressbar.ProgressBar
 import com.compose.sample.composeui.navigationbar.BottomNavBarScreen
 import com.compose.sample.composeui.nestedscroll.SampleNetfixLazyScreen
 import com.compose.sample.composeui.overlaprow.CustomOverlappingRow
@@ -107,6 +108,7 @@ class MainActivity : ComponentActivity() {
                                 Destination.TimeLine -> TimelineContent(stages = DATA)
                                 Destination.InvitationCard -> ThreadsInviteCard()
                                 Destination.slider -> CustomSlider()
+                                Destination.playerprogressbar -> ProgressBar(songDuration = "5.23")
                             }
                         }
                     }

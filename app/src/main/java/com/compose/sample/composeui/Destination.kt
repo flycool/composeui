@@ -20,4 +20,5 @@ enum class Destination(val route: String) {
     TimeLine("timeline"),
     InvitationCard("invitationcard"),
     slider("slider"),
+    playerprogressbar("playerprogressbar"),
 }
