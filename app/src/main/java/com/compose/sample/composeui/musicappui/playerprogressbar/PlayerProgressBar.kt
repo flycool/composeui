@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -24,7 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,6 +32,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
@@ -146,12 +147,17 @@ fun PlayPauseButton(
     IconButton(
         onClick = onClick,
         modifier = Modifier
-            .size(32.dp)
+            .size(48.dp)
+            .clip(CircleShape)
             .background(color = MaterialTheme.colorScheme.onSecondary)
     ) {
         val resId =
             if (isPlaying) painterResource(id = R.drawable.ic_play) else painterResource(id = R.drawable.ic_pause)
-        Icon(painter = resId, contentDescription = null)
+        Icon(
+            painter = resId,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primaryContainer
+        )
     }
 }
 
