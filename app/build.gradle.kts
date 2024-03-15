@@ -39,6 +39,8 @@ kotlin {
 
 dependencies {
 
+    implementation("androidx.compose.animation:animation:1.7.0-alpha04")
+
     // Accompanist permission
     // https://google.github.io/accompanist/permissions/
     implementation(libs.google.accompanist.permissions)

@@ -26,6 +26,9 @@ internal fun Project.configureKotlinAndroid(commonExtension: CommonExtension<*, 
             allWarningsAsErrors = warningsAsErrors.toBoolean()
 
             jvmTarget = JavaVersion.VERSION_17.toString()
+
+            // The feature "context receivers" is experimental and should be enabled explicitly
+            freeCompilerArgs = listOf("-Xcontext-receivers")
         }
 
         packaging {

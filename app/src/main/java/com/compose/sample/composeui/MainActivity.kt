@@ -12,17 +12,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -32,11 +26,9 @@ import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.compose.sample.composeui.annotationstring.BasicTextStyle
 import com.compose.sample.composeui.canvas.BouncingBallGame
-import com.compose.sample.composeui.containertransform.AddContentScreen
 import com.compose.sample.composeui.containertransform.ContainerTransformScreen
 import com.compose.sample.composeui.custommodifier.GreyscaleScene
 import com.compose.sample.composeui.decorationtextfield.DecorationTextField
-import com.compose.sample.composeui.draganddrop.HorizontalPagerContent
 import com.compose.sample.composeui.dragfood.DragDropMainScreen
 import com.compose.sample.composeui.dragfood.model.foodItems
 import com.compose.sample.composeui.edgetoedge.DragBoxContent
@@ -44,7 +36,7 @@ import com.compose.sample.composeui.edgetoedge.NavEdgeToEdgeScreen
 import com.compose.sample.composeui.emoji.FireEmoji
 import com.compose.sample.composeui.indicator.AnimatedCircularProgressIndicator
 import com.compose.sample.composeui.invitationcard.ThreadsInviteCard
-import com.compose.sample.composeui.musicappui.albums.ActionPanel
+import com.compose.sample.composeui.lookaheadscope.LookAheadContent
 import com.compose.sample.composeui.musicappui.playerprogressbar.ProgressBar
 import com.compose.sample.composeui.navigationbar.BottomNavBarScreen
 import com.compose.sample.composeui.nestedscroll.SampleNetfixLazyScreen
@@ -141,6 +133,8 @@ class MainActivity : ComponentActivity() {
                                         }
                                     )
                                 }
+
+                                Destination.lookaheadscope -> LookAheadContent()
                             }
                         }
                     }
