@@ -21,4 +21,5 @@ enum class Destination(val route: String) {
     InvitationCard("invitationcard"),
     slider("slider"),
     playerprogressbar("playerprogressbar"),
+    dragbox("dragbox"),
 }

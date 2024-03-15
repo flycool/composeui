@@ -2,17 +2,25 @@ package com.compose.sample.composeui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
@@ -31,6 +39,7 @@ import com.compose.sample.composeui.decorationtextfield.DecorationTextField
 import com.compose.sample.composeui.draganddrop.HorizontalPagerContent
 import com.compose.sample.composeui.dragfood.DragDropMainScreen
 import com.compose.sample.composeui.dragfood.model.foodItems
+import com.compose.sample.composeui.edgetoedge.DragBoxContent
 import com.compose.sample.composeui.edgetoedge.NavEdgeToEdgeScreen
 import com.compose.sample.composeui.emoji.FireEmoji
 import com.compose.sample.composeui.indicator.AnimatedCircularProgressIndicator
@@ -77,6 +86,7 @@ class MainActivity : ComponentActivity() {
 
 //        enableEdgeToEdge()
 
+
         setContent {
             ComposeuiTheme {
 
@@ -110,6 +120,27 @@ class MainActivity : ComponentActivity() {
                                 Destination.InvitationCard -> ThreadsInviteCard()
                                 Destination.slider -> CustomSlider()
                                 Destination.playerprogressbar -> ProgressBar(songDuration = "5.23")
+                                Destination.dragbox -> {
+                                    val systemBarStyle by remember {
+                                        val defaultSystemBarColor = Color.TRANSPARENT
+                                        mutableStateOf(
+                                            SystemBarStyle.auto(
+                                                lightScrim = defaultSystemBarColor,
+                                                darkScrim = defaultSystemBarColor
+                                            )
+                                        )
+                                    }
+                                    LaunchedEffect(systemBarStyle) {
+                                        enableEdgeToEdge(
+                                            statusBarStyle = systemBarStyle,
+                                            navigationBarStyle = systemBarStyle
+                                        )
+                                    }
+                                    DragBoxContent (
+                                        changeSystemBarStyle = {
+                                        }
+                                    )
+                                }
                             }
                         }
                     }
