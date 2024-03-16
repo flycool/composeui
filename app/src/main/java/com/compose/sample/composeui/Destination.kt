@@ -23,4 +23,5 @@ enum class Destination(val route: String) {
     playerprogressbar("playerprogressbar"),
     dragbox("dragbox"),
     lookaheadscope("lookaheadscope"),
+    containertransrom("containertransrom"),
 }

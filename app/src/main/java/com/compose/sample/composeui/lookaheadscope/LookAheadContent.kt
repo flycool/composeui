@@ -31,6 +31,7 @@ import androidx.compose.ui.layout.approachLayout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.round
 
@@ -79,11 +80,11 @@ context (LookaheadScope)
 @OptIn(ExperimentalAnimatableApi::class, ExperimentalComposeUiApi::class)
 fun Modifier.animateBounds(): Modifier = composed {
     val offsetAnim = remember { DeferredTargetAnimation(IntOffset.VectorConverter) }
-    val sizeAnim = remember { DeferredTargetAnimation(IntOffset.VectorConverter)}
+    val sizeAnim = remember { DeferredTargetAnimation(IntSize.VectorConverter)}
     val scope = rememberCoroutineScope()
     this.approachLayout(
         isMeasurementApproachComplete = {
-            sizeAnim.updateTarget(IntOffset(it.width, it.height), scope, tween(2000))
+            sizeAnim.updateTarget(it, scope, tween(2000))
             sizeAnim.isIdle
         },
         isPlacementApproachComplete = {
@@ -92,7 +93,7 @@ fun Modifier.animateBounds(): Modifier = composed {
             offsetAnim.isIdle
         },
     ) { measurable, constraints ->
-        val (animWidth, animHeight) = sizeAnim.updateTarget(IntOffset(lookaheadSize.width, lookaheadSize.height), scope)
+        val (animWidth, animHeight) = sizeAnim.updateTarget(lookaheadSize, scope)
         measurable.measure(Constraints.fixed(animWidth, animHeight)).run {
             layout(width, height) {
                 coordinates?.let {

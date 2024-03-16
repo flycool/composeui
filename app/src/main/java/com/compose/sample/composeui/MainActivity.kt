@@ -36,6 +36,7 @@ import com.compose.sample.composeui.edgetoedge.NavEdgeToEdgeScreen
 import com.compose.sample.composeui.emoji.FireEmoji
 import com.compose.sample.composeui.indicator.AnimatedCircularProgressIndicator
 import com.compose.sample.composeui.invitationcard.ThreadsInviteCard
+import com.compose.sample.composeui.lookaheadscope.ContainerTransform
 import com.compose.sample.composeui.lookaheadscope.LookAheadContent
 import com.compose.sample.composeui.musicappui.playerprogressbar.ProgressBar
 import com.compose.sample.composeui.navigationbar.BottomNavBarScreen
@@ -135,6 +136,7 @@ class MainActivity : ComponentActivity() {
                                 }
 
                                 Destination.lookaheadscope -> LookAheadContent()
+                                Destination.containertransrom -> ContainerTransform()
                             }
                         }
                     }
