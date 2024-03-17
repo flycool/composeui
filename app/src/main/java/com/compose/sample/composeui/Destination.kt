@@ -24,4 +24,5 @@ enum class Destination(val route: String) {
     dragbox("dragbox"),
     lookaheadscope("lookaheadscope"),
     containertransrom("containertransrom"),
+    draggableindicator("draggableindicator"),
 }

@@ -29,6 +29,7 @@ import com.compose.sample.composeui.canvas.BouncingBallGame
 import com.compose.sample.composeui.containertransform.ContainerTransformScreen
 import com.compose.sample.composeui.custommodifier.GreyscaleScene
 import com.compose.sample.composeui.decorationtextfield.DecorationTextField
+import com.compose.sample.composeui.draganddrop.indicator.Carousel
 import com.compose.sample.composeui.dragfood.DragDropMainScreen
 import com.compose.sample.composeui.dragfood.model.foodItems
 import com.compose.sample.composeui.edgetoedge.DragBoxContent
@@ -137,6 +138,7 @@ class MainActivity : ComponentActivity() {
 
                                 Destination.lookaheadscope -> LookAheadContent()
                                 Destination.containertransrom -> ContainerTransform()
+                                Destination.draggableindicator -> Carousel()
                             }
                         }
                     }
