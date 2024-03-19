@@ -25,4 +25,5 @@ enum class Destination(val route: String) {
     lookaheadscope("lookaheadscope"),
     containertransrom("containertransrom"),
     draggableindicator("draggableindicator"),
+    footballground("footballground"),
 }

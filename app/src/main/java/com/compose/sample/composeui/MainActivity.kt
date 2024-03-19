@@ -46,6 +46,7 @@ import com.compose.sample.composeui.overlaprow.CustomOverlappingRow
 import com.compose.sample.composeui.permission.OptionalSinglePermission
 import com.compose.sample.composeui.polygonShapeASLoader.PolygonShapeASLoader
 import com.compose.sample.composeui.slider.CustomSlider
+import com.compose.sample.composeui.statdium.FootballGround
 import com.compose.sample.composeui.tabrow.SwipeableTabRow
 import com.compose.sample.composeui.timeline.DATA
 import com.compose.sample.composeui.timeline.TimelineContent
@@ -139,6 +140,7 @@ class MainActivity : ComponentActivity() {
                                 Destination.lookaheadscope -> LookAheadContent()
                                 Destination.containertransrom -> ContainerTransform()
                                 Destination.draggableindicator -> Carousel()
+                                Destination.footballground -> FootballGround()
                             }
                         }
                     }
