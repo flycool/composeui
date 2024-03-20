@@ -35,6 +35,7 @@ import com.compose.sample.composeui.dragfood.model.foodItems
 import com.compose.sample.composeui.edgetoedge.DragBoxContent
 import com.compose.sample.composeui.edgetoedge.NavEdgeToEdgeScreen
 import com.compose.sample.composeui.emoji.FireEmoji
+import com.compose.sample.composeui.glovo.GlovoScreen
 import com.compose.sample.composeui.indicator.AnimatedCircularProgressIndicator
 import com.compose.sample.composeui.invitationcard.ThreadsInviteCard
 import com.compose.sample.composeui.lookaheadscope.ContainerTransform
@@ -141,6 +142,7 @@ class MainActivity : ComponentActivity() {
                                 Destination.containertransrom -> ContainerTransform()
                                 Destination.draggableindicator -> Carousel()
                                 Destination.footballground -> FootballGround()
+                                Destination.GlovoScreen -> GlovoScreen()
                             }
                         }
                     }

@@ -26,4 +26,5 @@ enum class Destination(val route: String) {
     containertransrom("containertransrom"),
     draggableindicator("draggableindicator"),
     footballground("footballground"),
+    GlovoScreen("GlovoScreen"),
 }
