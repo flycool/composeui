@@ -77,10 +77,6 @@ fun LongPressDraggable(
     }
 }
 
-@Stable
-data class DataToDrapWrapper(
-    val dataToDrop: Any? = null
-)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -89,8 +85,7 @@ fun <T> DragTarget(
     verticalPagerState: PagerState? = null, // if you have nested / multi paged app
     horizontalPagerState: PagerState? = null,
     modifier: Modifier,
-    //dataToDrop: Any? = null, // change type here to your data model class
-    dataToDrapWrapper: DataToDrapWrapper,
+    dataToDrop: () -> Any? = {}, // change type here to your data model class
     content: @Composable (shouldAnimate: Boolean) -> Unit
 ) {
     val context = LocalContext.current
@@ -104,7 +99,7 @@ fun <T> DragTarget(
         .pointerInput(Unit) {
             detectDragGesturesAfterLongPress(
                 onDragStart = {
-                    currentState.dataToDrop = dataToDrapWrapper.dataToDrop
+                    currentState.dataToDrop = dataToDrop()
                     currentState.isDragging = true
                     currentState.dragPosition = currentPosition + it
                     currentState.draggableComposable = {

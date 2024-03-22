@@ -109,12 +109,11 @@ fun DragTargetWidgetItem(
     pagerState: PagerState,
     modifier: Modifier = Modifier
 ) {
-    val dataWrapper = DataToDrapWrapper(data)
     DragTarget<Widget>(
         pagerSize = 3, // Assuming there are two pages in the horizontal pager
         horizontalPagerState = pagerState,
         modifier = modifier.wrapContentSize(),
-        dataToDrapWrapper = dataWrapper,
+        dataToDrop = { data }
     ) { shouldAnimate ->
         WidgetItem(data, shouldAnimate)
     }
