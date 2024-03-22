@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -16,18 +17,22 @@ import androidx.compose.ui.unit.dp
 @Preview
 @Composable
 fun Chart() {
-    val data = listOf(
-        DataPoint(20f, Color.LightGray),
-        DataPoint(45f, Color.Blue),
-        DataPoint(130f, Color.DarkGray),
-        DataPoint(80f, Color.LightGray),
-        DataPoint(65f, Color.Cyan)
-    )
-    BarChart(data = data)
+    BarChart()
 }
 
+
+
+val data = listOf(
+    DataPoint(20f, Color.LightGray),
+    DataPoint(45f, Color.Blue),
+    DataPoint(130f, Color.DarkGray),
+    DataPoint(80f, Color.LightGray),
+    DataPoint(65f, Color.Cyan)
+)
+
+@Stable
 @Composable
-private fun BarChart(data: List<DataPoint>) {
+private fun BarChart() {
     val maxBarValue = data.maxOf { it.value }
     Canvas(
         modifier = Modifier

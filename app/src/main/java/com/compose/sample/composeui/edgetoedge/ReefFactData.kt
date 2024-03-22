@@ -1,7 +1,9 @@
 package com.compose.sample.composeui.edgetoedge
 
+import androidx.compose.runtime.Immutable
 import com.compose.sample.composeui.R
 
+@Immutable
 data class ReefFact(
     val title: String,
     val fact: String,

@@ -13,6 +13,7 @@ subprojects {
             "-P",
             "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" +
                     project.buildDir.absolutePath + "/compose_metrics"
+
         )
         kotlinOptions.freeCompilerArgs += listOf(
             "-P",

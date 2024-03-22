@@ -2,6 +2,8 @@ package com.compose.sample.composeui.timeline
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.runtime.Stable
+import kotlinx.collections.immutable.persistentListOf
 import java.time.LocalDate
 
 enum class HiringStageStatus {
@@ -24,6 +26,7 @@ sealed class MessageSender(open val message: String) {
     ) : MessageSender(message)
 }
 
+@Stable
 data class HiringStage(
     val date: LocalDate?,
     val initiator: MessageSender,
@@ -31,7 +34,7 @@ data class HiringStage(
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
-val DATA = arrayOf(
+val DATA = persistentListOf(
     HiringStage(
         date = LocalDate.now(),
         initiator = MessageSender.Candidate(

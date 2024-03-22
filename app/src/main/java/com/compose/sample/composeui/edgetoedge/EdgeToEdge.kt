@@ -19,6 +19,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -47,7 +48,7 @@ fun NavEdgeToEdgeScreen() {
     NavHost(navController = navController, startDestination = "main") {
         composable("main") {
             EdgeToEdgeScreen(
-                facts = facts,
+                factsWrapper = ReefFactListWrapper(facts),
                 onDetailClick = {
                     //showDialog = facts.indexOf(it)
                     navController.navigate("detail/${facts.indexOf(it)}")
@@ -77,9 +78,14 @@ fun NavEdgeToEdgeScreen() {
     }
 }
 
+@Immutable
+data class ReefFactListWrapper(
+    val facts: List<ReefFact>
+)
+
 @Composable
 fun EdgeToEdgeScreen(
-    facts: List<ReefFact>,
+    factsWrapper: ReefFactListWrapper,
     onDetailClick: (ReefFact) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -103,7 +109,7 @@ fun EdgeToEdgeScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             item { Spacer(modifier = Modifier.height(0.dp)) }
-            items(facts) { fact ->
+            items(factsWrapper.facts) { fact ->
                 FactItem(fact = fact, onClick = onDetailClick)
             }
             item { Spacer(modifier = Modifier.height(0.dp)) }
@@ -115,7 +121,7 @@ fun EdgeToEdgeScreen(
 @Preview
 @Composable
 fun ScreenPreview() {
-    EdgeToEdgeScreen(facts = facts, onDetailClick = {})
+    EdgeToEdgeScreen(factsWrapper = ReefFactListWrapper(facts), onDetailClick = {})
 }
 
 @Composable

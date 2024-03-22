@@ -18,9 +18,10 @@ import com.compose.sample.composeui.R
 import com.compose.sample.composeui.ui.theme.Gray200
 import com.compose.sample.composeui.ui.theme.Green500
 import com.compose.sample.composeui.ui.theme.Orange500
+import kotlinx.collections.immutable.PersistentList
 
 @Composable
-fun TimelineContent(stages: Array<HiringStage>) {
+fun TimelineContent(stages: PersistentList<HiringStage>) {
     LazyColumn(
         modifier = Modifier
             .wrapContentHeight()
@@ -50,7 +51,7 @@ fun TimelineContent(stages: Array<HiringStage>) {
 }
 
 @Composable
-private fun getLineBrush(circleRadius: Dp, index: Int, items: Array<HiringStage>): LineParameters? {
+private fun getLineBrush(circleRadius: Dp, index: Int, items: PersistentList<HiringStage>): LineParameters? {
     return if (index != items.lastIndex) {
         val currentStage: HiringStage = items[index]
         val nextStage: HiringStage = items[index + 1]

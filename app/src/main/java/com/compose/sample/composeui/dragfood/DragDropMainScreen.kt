@@ -13,24 +13,37 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.compose.sample.composeui.dragfood.function.LongPressDraggable
 import com.compose.sample.composeui.dragfood.model.FoodItem
+import com.compose.sample.composeui.dragfood.model.foodItems
 import com.compose.sample.composeui.dragfood.model.persons
+
+
+@Stable
+data class FoodItemListWrapper(
+    val list: List<FoodItem>
+)
+
+@Composable
+fun DragDropMainScreen() {
+    DragDropMainScreen(listWrapper = FoodItemListWrapper(foodItems))
+}
 
 @Composable
 fun DragDropMainScreen(
-    list: List<FoodItem>
+    listWrapper: FoodItemListWrapper
 ) {
     LongPressDraggable(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(horizontal = 10.dp)
         ) {
-            items(list) { food ->
+            items(listWrapper.list) { food ->
                 FoodItemCard(foodItem = food)
             }
         }

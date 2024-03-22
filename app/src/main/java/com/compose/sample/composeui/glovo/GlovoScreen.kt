@@ -11,7 +11,9 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateMapOf
@@ -45,9 +47,15 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 
+@Stable
 data class GlovoItem(
     val title: String,
     val path: Path
+)
+
+@Stable
+data class GlovoList(
+    val items: List<GlovoItem>
 )
 
 @Composable
@@ -55,7 +63,8 @@ fun GlovoScreen(
     mainItem: GlovoItem,
     modifier: Modifier = Modifier,
     iconScale: Float = 3f,
-    items: List<GlovoItem> = emptyList(),
+    //items: List<GlovoItem> = emptyList(),
+    glovoList: GlovoList = GlovoList(emptyList()),
     mainCircleRadius: Dp = 140.dp,
     innerCircleRadius: Dp = 50.dp,
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
@@ -71,7 +80,7 @@ fun GlovoScreen(
     var dragStartedAngle by remember { mutableFloatStateOf(0f) }
     var oldAngle by remember { mutableFloatStateOf(angle) }
 
-    LaunchedEffect(key1 = items) {
+    LaunchedEffect(key1 = glovoList.items) {
         animateFloat.animateTo(
             targetValue = 1f,
             animationSpec = spring(
@@ -122,7 +131,7 @@ fun GlovoScreen(
 
         circleCenter = Offset(center.x, center.y)
 
-        val distance = 360f / items.size
+        val distance = 360f / glovoList.items.size
         val mainCircleOffset = Offset(circleCenter.x, circleCenter.y)
         glovoUiItems[mainCircleOffset] = mainItem
 
@@ -136,7 +145,7 @@ fun GlovoScreen(
             currentOffset = mainCircleOffset
         )
 
-        items.forEachIndexed { i, item ->
+        glovoList.items.forEachIndexed { i, item ->
             val angleInDegrees = (i * distance + angle - 90)
             val angleInRad = angleInDegrees * (PI / 180).toFloat()
 
@@ -225,12 +234,14 @@ fun GlovoScreen() {
             .fillMaxSize()
             .background(color = Color.Black),
         mainItem = mainItem,
-        items = listOf(
-            GlovoItem("secondary 1", defaultPath),
-            GlovoItem("secondary 2", defaultPath),
-            GlovoItem("secondary 3", defaultPath),
-            GlovoItem("secondary 4", defaultPath),
-            GlovoItem("secondary 5", defaultPath),
+        glovoList = GlovoList(
+            listOf(
+                GlovoItem("secondary 1", defaultPath),
+                GlovoItem("secondary 2", defaultPath),
+                GlovoItem("secondary 3", defaultPath),
+                GlovoItem("secondary 4", defaultPath),
+                GlovoItem("secondary 5", defaultPath),
+            )
         )
     ) {
         Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
@@ -250,12 +261,14 @@ private fun GlovoPreivew() {
             .fillMaxSize()
             .background(color = Color.Black),
         mainItem = mainItem,
-        items = listOf(
-            GlovoItem("secondary 1", defaultPath),
-            GlovoItem("secondary 2", defaultPath),
-            GlovoItem("secondary 3", defaultPath),
-            GlovoItem("secondary 4", defaultPath),
-            GlovoItem("secondary 5", defaultPath),
+        glovoList = GlovoList(
+            listOf(
+                GlovoItem("secondary 1", defaultPath),
+                GlovoItem("secondary 2", defaultPath),
+                GlovoItem("secondary 3", defaultPath),
+                GlovoItem("secondary 4", defaultPath),
+                GlovoItem("secondary 5", defaultPath),
+            )
         )
     ) {
         println("glovo item: ${it.title}")

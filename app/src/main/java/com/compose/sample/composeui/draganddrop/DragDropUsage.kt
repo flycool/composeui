@@ -21,6 +21,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
@@ -51,9 +52,15 @@ fun HorizontalPagerContent() {
     }
 }
 
+@Stable
+data class WigetListWrapper(
+    val widgetList: List<Widget> = emptyList()
+)
+
 @Composable
 fun Page1Content(pagerState: PagerState) {
-    val widgetList = emptyList<Widget>() //viewModel.widgetList.collectAsState()
+    val wigetListWrapper = WigetListWrapper()
+    //val widgetList = emptyList<Widget>() //viewModel.widgetList.collectAsState()
     DropTarget<Widget>(modifier = Modifier.fillMaxSize())
     { isInBound, droppedWidget ->
         if (!LocalDragTargetInfo.current.itemDropped) {
@@ -76,16 +83,16 @@ fun Page1Content(pagerState: PagerState) {
             }
         }
     }
-    WidgetsList(pagerState, widgetList)
+    WidgetsList(pagerState, wigetListWrapper)
 }
 
 @Composable
-fun WidgetsList(pagerState: PagerState, widgetList: List<Widget>) {
+fun WidgetsList(pagerState: PagerState, widgetListWrapper: WigetListWrapper) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(widgetList) { widget ->
+        items(widgetListWrapper.widgetList) { widget ->
 // this composable was defined earlier as
 // each widget item is itself a drag target
             DragTargetWidgetItem(
@@ -102,13 +109,12 @@ fun DragTargetWidgetItem(
     pagerState: PagerState,
     modifier: Modifier = Modifier
 ) {
-
+    val dataWrapper = DataToDrapWrapper(data)
     DragTarget<Widget>(
-        context = LocalContext.current,
         pagerSize = 3, // Assuming there are two pages in the horizontal pager
         horizontalPagerState = pagerState,
         modifier = modifier.wrapContentSize(),
-        dataToDrop = data,
+        dataToDrapWrapper = dataWrapper,
     ) { shouldAnimate ->
         WidgetItem(data, shouldAnimate)
     }

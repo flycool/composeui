@@ -1,6 +1,5 @@
 package com.compose.sample.composeui.annotationstring
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Text

@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.movableContentWithReceiverOf
 import androidx.compose.runtime.mutableStateOf
@@ -49,9 +50,13 @@ fun ContainerTransform() {
                     modifier = Modifier
                         .fillMaxSize()
                         .weight(if (isExpanded) 1f else 4f),
-                    contentAlignment = if(isExpanded) Alignment.TopStart else Alignment.Center
+                    contentAlignment = if (isExpanded) Alignment.TopStart else Alignment.Center
                 ) {
-                    HeaderLayout(isExpanded = isExpanded)
+                    HeaderLayout(
+                        LookaheadScopeWrapper(this@LookaheadScope),
+                        isExpanded = isExpanded
+                    )
+
                 }
 
                 Box(
@@ -59,17 +64,27 @@ fun ContainerTransform() {
                         .weight(if (isExpanded) 4f else 1f)
                         .padding(horizontal = 8.dp)
                 ) {
-                    AttributeLayout(isExpanded = isExpanded)
+                    AttributeLayout(
+                        LookaheadScopeWrapper(this@LookaheadScope),
+                        isExpanded = isExpanded
+                    )
                 }
             }
         }
-
     }
-
 }
 
+@Stable
+data class LookaheadScopeWrapper(
+    val lookaheadScope: LookaheadScope
+)
+
+@Stable
 @Composable
-fun LookaheadScope.HeaderLayout(isExpanded:Boolean) {
+fun HeaderLayout(
+    lookaheadScopeWrapper: LookaheadScopeWrapper,
+    isExpanded: Boolean
+) {
     val headerImage = remember {
         movableContentWithReceiverOf<LookaheadScope, Modifier> { modifier ->
             Box(modifier = Modifier
@@ -124,49 +139,56 @@ fun LookaheadScope.HeaderLayout(isExpanded:Boolean) {
     }
 
     if (isExpanded) {
-        headerContainer {
+        lookaheadScopeWrapper.lookaheadScope.headerContainer {
             Row(
                 modifier = Modifier.padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                headerImage(Modifier.size(48.dp))
+                lookaheadScopeWrapper.lookaheadScope.headerImage(Modifier.size(48.dp))
                 Spacer(modifier = Modifier.width(16.dp))
                 Column {
-                    headerTitle(
+                    lookaheadScopeWrapper.lookaheadScope.headerTitle(
                         Modifier
                             .height(20.dp)
-                            .width(280.dp))
-                    headerSubTitle(
+                            .width(280.dp)
+                    )
+                    lookaheadScopeWrapper.lookaheadScope.headerSubTitle(
                         Modifier
                             .height(20.dp)
-                            .width(172.dp))
+                            .width(172.dp)
+                    )
                 }
             }
         }
     } else {
-        headerContainer {
+        lookaheadScopeWrapper.lookaheadScope.headerContainer {
             Column(
                 modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                headerImage(Modifier.size(120.dp))
+                lookaheadScopeWrapper.lookaheadScope.headerImage(Modifier.size(120.dp))
                 Spacer(Modifier.height(32.dp))
-                headerTitle(
+                lookaheadScopeWrapper.lookaheadScope.headerTitle(
                     Modifier
                         .height(24.dp)
-                        .width(280.dp))
+                        .width(280.dp)
+                )
                 Spacer(Modifier.height(16.dp))
-                headerSubTitle(
+                lookaheadScopeWrapper.lookaheadScope.headerSubTitle(
                     Modifier
                         .height(24.dp)
-                        .width(172.dp))
+                        .width(172.dp)
+                )
             }
         }
     }
 }
 
 @Composable
-fun LookaheadScope.AttributeLayout(isExpanded:Boolean) {
+fun AttributeLayout(
+    lookaheadScopeWrapper: LookaheadScopeWrapper,
+    isExpanded: Boolean
+) {
     val attributeColors = listOf(
         Color(0xFFFF928D),
         Color(0xFFFFDB8D),
@@ -232,11 +254,13 @@ fun LookaheadScope.AttributeLayout(isExpanded:Boolean) {
         }
     }
 
+
     if (isExpanded) {
+
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            attributes(
+            lookaheadScopeWrapper.lookaheadScope.attributes(
                 Modifier
                     .height(140.dp)
                     .fillMaxWidth()
@@ -247,18 +271,20 @@ fun LookaheadScope.AttributeLayout(isExpanded:Boolean) {
                         .fillMaxSize(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    attributeImage(Modifier.size(64.dp))
+                    lookaheadScopeWrapper.lookaheadScope.attributeImage(Modifier.size(64.dp))
                     Spacer(Modifier.width(16.dp))
                     Column {
-                        attributeTitle(
+                        lookaheadScopeWrapper.lookaheadScope.attributeTitle(
                             Modifier
                                 .height(20.dp)
-                                .fillMaxWidth())
+                                .fillMaxWidth()
+                        )
                         Spacer(Modifier.height(16.dp))
-                        attributeSubtitle(
+                        lookaheadScopeWrapper.lookaheadScope.attributeSubtitle(
                             Modifier
                                 .height(20.dp)
-                                .fillMaxWidth())
+                                .fillMaxWidth()
+                        )
                     }
                 }
             }
@@ -267,7 +293,7 @@ fun LookaheadScope.AttributeLayout(isExpanded:Boolean) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            attributes(
+            lookaheadScopeWrapper.lookaheadScope.attributes(
                 Modifier.size(width = 64.dp, height = 80.dp)
             ) {
                 Column(
@@ -276,20 +302,20 @@ fun LookaheadScope.AttributeLayout(isExpanded:Boolean) {
                         .padding(8.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    attributeImage(Modifier.size(32.dp))
+
+                    lookaheadScopeWrapper.lookaheadScope.attributeImage(Modifier.size(32.dp))
                     Spacer(Modifier.height(8.dp))
-                    attributeTitle(
+                    lookaheadScopeWrapper.lookaheadScope.attributeTitle(
                         Modifier
                             .height(16.dp)
-                            .fillMaxWidth())
-                    attributeSubtitle(Modifier.size(0.dp))
+                            .fillMaxWidth()
+                    )
                 }
             }
         }
     }
 
 }
-
 
 
 @Preview

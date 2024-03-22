@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -14,15 +15,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.delay
 
+private val particleData = listOf(
+    Particle(Offset(4f, 30f), Offset(6f, 3f)),
+    Particle(Offset(15f, 5f), Offset(66f, 7f)),
+    Particle(Offset(1f, 43f), Offset(69f, 3f))
+)
+
 @Preview
 @Composable
 fun Particle() {
-    val data = listOf(
-        Particle(Offset(4f, 30f), Offset(6f, 3f)),
-        Particle(Offset(15f, 5f), Offset(66f, 7f)),
-        Particle(Offset(1f, 43f), Offset(69f, 3f))
-    )
-    ParticleSystem(particles = data)
+    ParticleSystem()
 }
 
 data class Particle(
@@ -30,12 +32,13 @@ data class Particle(
     val velocity: Offset
 )
 
+@Stable
 @Composable
-fun ParticleSystem(particles: List<Particle>) {
+fun ParticleSystem() {
     val mutableParticles = remember {
         mutableStateListOf<Particle>()
     }
-    mutableParticles.addAll(particles)
+    mutableParticles.addAll(particleData)
 
     var counter = 0
     LaunchedEffect(Unit) {

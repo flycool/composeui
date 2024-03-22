@@ -14,15 +14,17 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.work.WorkManager
 import coil.compose.AsyncImage
 
 @Composable
 fun ShareImageUI(
-    workManager: WorkManager,
     imageViewModel: ImageWorkerViewModel
 ) {
+    val context = LocalContext.current
+    val workManager = WorkManager.getInstance(context.applicationContext)
     val workerResult = imageViewModel.workId?.let { id ->
         workManager.getWorkInfoByIdLiveData(id).observeAsState().value
     }

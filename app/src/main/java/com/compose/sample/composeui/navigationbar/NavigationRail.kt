@@ -31,6 +31,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.PersistentList
 
 
 /**
@@ -84,7 +86,7 @@ fun NavigationRailScreen(
 
 @Composable
 fun NavigationSideBar(
-    items: List<NavigationItem>,
+    items: PersistentList<NavigationItem>,
     selectedItemIndex: Int,
     onNavigate: (Int) -> Unit,
 ) {

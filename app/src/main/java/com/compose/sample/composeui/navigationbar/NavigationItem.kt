@@ -7,9 +7,11 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.vector.ImageVector
+import kotlinx.collections.immutable.persistentListOf
 
-val items = listOf(
+val items = persistentListOf(
     NavigationItem(
         title = "Home",
         selectedImage = Icons.Filled.Home,
@@ -31,6 +33,7 @@ val items = listOf(
     ),
 )
 
+@Immutable
 data class NavigationItem(
     val title: String,
     val selectedImage: ImageVector,

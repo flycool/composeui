@@ -17,7 +17,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -38,15 +37,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.persistentListOf
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun <T> LargeDropdownMenu(
     modifier: Modifier = Modifier,
     enable: Boolean = true,
     label: String,
     notSetLabel: String? = null,
-    items: List<T>,
+    items: PersistentList<T>,
     selectedIndex: Int = -1,
     onItemSelected: (index: Int, item: T) -> Unit,
     selectedItemToString: (T) -> String = { it.toString() },
@@ -187,7 +187,7 @@ fun LargeDropdwonMenuPreview() {
     val selectedIndex by remember { mutableStateOf(-1) }
     LargeDropdownMenu(
         label = "Sample",
-        items = listOf("item 1", "item2", "item 3"),
+        items = persistentListOf("item 1", "item2", "item 3"),
         selectedIndex = selectedIndex,
         onItemSelected = { index, _ ->
 

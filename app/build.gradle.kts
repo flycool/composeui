@@ -39,6 +39,8 @@ kotlin {
 
 dependencies {
 
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7")
+
     implementation("androidx.compose.animation:animation:1.7.0-alpha04")
 
     // Accompanist permission

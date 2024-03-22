@@ -12,7 +12,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,7 +30,6 @@ import com.compose.sample.composeui.custommodifier.GreyscaleScene
 import com.compose.sample.composeui.decorationtextfield.DecorationTextField
 import com.compose.sample.composeui.draganddrop.indicator.Carousel
 import com.compose.sample.composeui.dragfood.DragDropMainScreen
-import com.compose.sample.composeui.dragfood.model.foodItems
 import com.compose.sample.composeui.edgetoedge.DragBoxContent
 import com.compose.sample.composeui.edgetoedge.NavEdgeToEdgeScreen
 import com.compose.sample.composeui.emoji.FireEmoji
@@ -57,7 +55,6 @@ import com.compose.sample.composeui.worker.ImageCompressWorker
 import com.compose.sample.composeui.worker.ImageWorkerViewModel
 import com.compose.sample.funui.splashscreen.SplashScreenViewModel
 
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 class MainActivity : ComponentActivity() {
 
     private lateinit var workManager: WorkManager
@@ -100,7 +97,7 @@ class MainActivity : ComponentActivity() {
                                 Destination.canvas -> BouncingBallGame()
                                 Destination.containertransform -> ContainerTransformScreen()
                                 Destination.decorationtextfield -> DecorationTextField()
-                                Destination.dragfood -> DragDropMainScreen(foodItems)
+                                Destination.dragfood -> DragDropMainScreen()
                                 Destination.edgetoedge -> NavEdgeToEdgeScreen()
                                 Destination.emoji -> FireEmoji()
                                 Destination.indicator -> AnimatedCircularProgressIndicator()

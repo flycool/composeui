@@ -12,6 +12,7 @@ import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.File
@@ -117,7 +118,8 @@ fun saveMediaToStorage(context: Context, bitmap: Bitmap) {
 
 // Select a file with the document picker
 @Composable
-fun SelectFileWithDocumentPicker(context: Context) {
+fun SelectFileWithDocumentPicker() {
+    val context = LocalContext.current
     val documentPick = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocument(),
     ) { uri ->

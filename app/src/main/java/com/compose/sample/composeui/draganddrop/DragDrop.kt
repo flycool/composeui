@@ -15,6 +15,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.IntSize
 import kotlinx.coroutines.launch
 import kotlin.math.abs
@@ -76,17 +77,23 @@ fun LongPressDraggable(
     }
 }
 
+@Stable
+data class DataToDrapWrapper(
+    val dataToDrop: Any? = null
+)
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun <T> DragTarget(
-    context: Context,
     pagerSize: Int,
     verticalPagerState: PagerState? = null, // if you have nested / multi paged app
     horizontalPagerState: PagerState? = null,
     modifier: Modifier,
-    dataToDrop: Any? = null, // change type here to your data model class
+    //dataToDrop: Any? = null, // change type here to your data model class
+    dataToDrapWrapper: DataToDrapWrapper,
     content: @Composable (shouldAnimate: Boolean) -> Unit
 ) {
+    val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     var currentPosition by remember { mutableStateOf(Offset.Zero) }
     val currentState = LocalDragTargetInfo.current
@@ -97,7 +104,7 @@ fun <T> DragTarget(
         .pointerInput(Unit) {
             detectDragGesturesAfterLongPress(
                 onDragStart = {
-                    currentState.dataToDrop = dataToDrop
+                    currentState.dataToDrop = dataToDrapWrapper.dataToDrop
                     currentState.isDragging = true
                     currentState.dragPosition = currentPosition + it
                     currentState.draggableComposable = {
