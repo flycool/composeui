@@ -29,4 +29,5 @@ enum class Destination(val route: String) {
     GlovoScreen("GlovoScreen"),
     documentScanner("documentScanner"),
     pullToRefresh("pullToRefresh"),
+    BiometricPrompt("BiometricPrompt"),
 }

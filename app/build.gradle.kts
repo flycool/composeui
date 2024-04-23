@@ -49,6 +49,10 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
 
+//    implementation("io.coil-kt:coil-gif:2.5.0")
+
+    implementation("androidx.biometric:biometric:1.1.0")
+
 
 
     // Accompanist permission
