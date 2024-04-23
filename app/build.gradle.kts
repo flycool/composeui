@@ -43,6 +43,15 @@ dependencies {
 
     implementation("androidx.compose.animation:animation:1.7.0-alpha04")
 
+    implementation("org.jsoup:jsoup:1.17.2")
+
+    implementation("org.seleniumhq.selenium:selenium-java:4.0.0-alpha-3")
+
+    implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
+
+
     // Accompanist permission
     // https://google.github.io/accompanist/permissions/
     implementation(libs.google.accompanist.permissions)
