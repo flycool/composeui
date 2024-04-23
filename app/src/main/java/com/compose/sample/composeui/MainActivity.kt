@@ -12,6 +12,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.compose.material3.pulltorefresh.PullToRefreshState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -53,6 +54,7 @@ import com.compose.sample.composeui.ui.theme.ComposeuiTheme
 import com.compose.sample.composeui.visualTransformation.TextFieldVisualTransformation
 import com.compose.sample.composeui.worker.ImageCompressWorker
 import com.compose.sample.composeui.worker.ImageWorkerViewModel
+import com.compose.sample.composeui2.pulltorefresh.PullToRefreshLazyColumnScreen
 import com.compose.sample.composeui2.scanner.DocumentScannerScreen
 import com.compose.sample.funui.splashscreen.SplashScreenViewModel
 
@@ -142,6 +144,7 @@ class MainActivity : ComponentActivity() {
                                 Destination.footballground -> FootballGround()
                                 Destination.GlovoScreen -> GlovoScreen()
                                 Destination.documentScanner -> DocumentScannerScreen()
+                                Destination.pullToRefresh -> PullToRefreshLazyColumnScreen()
                             }
                         }
                     }

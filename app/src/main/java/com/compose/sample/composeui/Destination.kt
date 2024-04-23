@@ -28,4 +28,5 @@ enum class Destination(val route: String) {
     footballground("footballground"),
     GlovoScreen("GlovoScreen"),
     documentScanner("documentScanner"),
+    pullToRefresh("pullToRefresh"),
 }

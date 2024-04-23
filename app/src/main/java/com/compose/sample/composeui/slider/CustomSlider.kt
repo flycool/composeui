@@ -153,7 +153,7 @@ fun CustomSlider(
                         thumb(value.roundToInt())
                     },
                     track = {
-                        track(it)
+                        //track(it)
                     },
                     enabled = enable
 

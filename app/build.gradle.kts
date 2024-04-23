@@ -48,7 +48,6 @@ dependencies {
     implementation("org.seleniumhq.selenium:selenium-java:4.0.0-alpha-3")
 
     implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
-    implementation("io.coil-kt:coil-compose:2.5.0")
 
 
 
@@ -67,7 +66,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.ext.junit)
     androidTestImplementation(libs.androidx.espresso)
-    //androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.ui.test.junit4)
     debugImplementation(libs.compose.ui.ui.tooling)
     debugImplementation(libs.compose.ui.ui.test.manifest)
