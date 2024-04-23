@@ -27,4 +27,5 @@ enum class Destination(val route: String) {
     draggableindicator("draggableindicator"),
     footballground("footballground"),
     GlovoScreen("GlovoScreen"),
+    documentScanner("documentScanner"),
 }

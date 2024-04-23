@@ -53,6 +53,7 @@ import com.compose.sample.composeui.ui.theme.ComposeuiTheme
 import com.compose.sample.composeui.visualTransformation.TextFieldVisualTransformation
 import com.compose.sample.composeui.worker.ImageCompressWorker
 import com.compose.sample.composeui.worker.ImageWorkerViewModel
+import com.compose.sample.composeui2.scanner.DocumentScannerScreen
 import com.compose.sample.funui.splashscreen.SplashScreenViewModel
 
 class MainActivity : ComponentActivity() {
@@ -140,6 +141,7 @@ class MainActivity : ComponentActivity() {
                                 Destination.draggableindicator -> Carousel()
                                 Destination.footballground -> FootballGround()
                                 Destination.GlovoScreen -> GlovoScreen()
+                                Destination.documentScanner -> DocumentScannerScreen()
                             }
                         }
                     }
