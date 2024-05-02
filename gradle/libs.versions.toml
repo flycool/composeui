@@ -19,7 +19,8 @@ lifecycle-common-java8 = "2.6.2"
 agp = "8.3.2"
 ksp = "1.9.0-1.0.13"
 #kotlin = "1.8.10"
-kotlin = "1.9.0"
+#kotlin = "1.9.0"
+kotlin = "2.0.0-RC1"
 appcompat = "1.6.1"
 material = "1.10.0"
 splashscreen = "1.0.1"
@@ -33,7 +34,7 @@ projectVersionCode = "1"
 projectMinSdkVersion = "26"
 projectTargetSdkVersion = "34"
 projectCompileSdkVersion = "34"
-kotlinCompilerExtensionVersion = "1.5.0"
+#kotlinCompilerExtensionVersion = "1.5.0"
 
 
 [libraries]
@@ -84,7 +85,9 @@ android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", ver
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
