@@ -88,13 +88,63 @@ class MainActivity : AppCompatActivity() {
             ComposeuiTheme {
 
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "landing") {
-                    composable("landing") {
+                NavHost(navController = navController, startDestination = Route.Landing) {
+                    composable<Route.Landing> {
                         LandingScreen(naviate = {
-                            navController.navigate(it.route)
+                            navController.navigate(it)
                         })
                     }
-                    Destination.entries.forEach { destination ->
+                    composable<Route.AnnotationString> { BasicTextStyle() }
+                    composable<Route.Canvas> { BouncingBallGame() }
+                    composable<Route.Containertransform> { ContainerTransformScreen() }
+                    composable<Route.DecorationTextfield> { DecorationTextField() }
+                    composable<Route.Dragfood> { DragDropMainScreen() }
+                    composable<Route.EdgeToEdge> { NavEdgeToEdgeScreen() }
+                    composable<Route.Emoji> { FireEmoji() }
+                    composable<Route.Indicator> { AnimatedCircularProgressIndicator() }
+                    composable<Route.Navigationbar> { BottomNavBarScreen() }
+                    composable<Route.Netstedscroll> { SampleNetfixLazyScreen() }
+                    composable<Route.Overlaprow> { CustomOverlappingRow() }
+                    composable<Route.Permission> { OptionalSinglePermission() }
+                    composable<Route.Polygonloader> { PolygonShapeASLoader() }
+                    composable<Route.Tabrow> { SwipeableTabRow() }
+                    composable<Route.Visualtransformation> { TextFieldVisualTransformation() }
+                    composable<Route.CustomModifier> { GreyscaleScene(isDisabled = true) }
+                    composable<Route.TimeLine> { TimelineContent(stages = DATA) }
+                    composable<Route.InvitationCard> { ThreadsInviteCard() }
+                    composable<Route.Slider> { CustomSlider() }
+                    composable<Route.Playerprogressbar> { ProgressBar(songDuration = "5.23") }
+                    composable<Route.Dragbox> {
+                        val systemBarStyle by remember {
+                            val defaultSystemBarColor = Color.TRANSPARENT
+                            mutableStateOf(
+                                SystemBarStyle.auto(
+                                    lightScrim = defaultSystemBarColor,
+                                    darkScrim = defaultSystemBarColor
+                                )
+                            )
+                        }
+                        LaunchedEffect(systemBarStyle) {
+                            enableEdgeToEdge(
+                                statusBarStyle = systemBarStyle,
+                                navigationBarStyle = systemBarStyle
+                            )
+                        }
+                        DragBoxContent (
+                            changeSystemBarStyle = {
+                            }
+                        )
+                    }
+                    composable<Route.Lookaheadscope> { LookAheadContent() }
+                    composable<Route.Containertransform2> { ContainerTransform() }
+                    composable<Route.Draggableindicator> { Carousel() }
+                    composable<Route.Footballground> { FootballGround() }
+                    composable<Route.GlovoScreen> { GlovoScreen() }
+                    composable<Route.DocumentScanner> { DocumentScannerScreen() }
+                    composable<Route.PullToRefresh> { PullToRefreshLazyColumnScreen() }
+                    composable<Route.BiometricPrompt> { BiometricPromptScreen() }
+
+                    /*Destination.entries.forEach { destination ->
                         composable(destination.route) {
                             when (destination) {
                                 Destination.annotationstring -> BasicTextStyle()
@@ -147,9 +197,10 @@ class MainActivity : AppCompatActivity() {
                                 Destination.documentScanner -> DocumentScannerScreen()
                                 Destination.pullToRefresh -> PullToRefreshLazyColumnScreen()
                                 Destination.BiometricPrompt -> BiometricPromptScreen()
+                                
                             }
                         }
-                    }
+                    }*/
                 }
             }
         }

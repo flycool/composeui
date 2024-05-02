@@ -22,7 +22,7 @@ import com.compose.sample.composeui.ui.theme.ComposeuiTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LandingScreen(naviate: (Destination) -> Unit) {
+fun LandingScreen(naviate: (Route) -> Unit) {
     ComposeuiTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -42,11 +42,23 @@ fun LandingScreen(naviate: (Destination) -> Unit) {
                 }
             ) { innerPadding ->
                 LazyColumn(contentPadding = innerPadding) {
-                    itemsIndexed(Destination.entries.toTypedArray()) { index, item ->
-                        Text(text = index.toString() + " " + item.name,
+//                    itemsIndexed(Destination.entries.toTypedArray()) { index, item ->
+//                        Text(text = index.toString() + " " + item.name,
+//                            modifier = Modifier
+//                                .clickable {
+//                                    naviate(item)
+//                                }
+//                                .defaultMinSize(minHeight = 48.dp)
+//                                .padding(8.dp)
+//                                .fillMaxWidth()
+//                        )
+//                    }
+                    itemsIndexed(routes) { index, route ->
+                        Text(
+                            text = "$index $route",
                             modifier = Modifier
                                 .clickable {
-                                    naviate(item)
+                                    naviate(route)
                                 }
                                 .defaultMinSize(minHeight = 48.dp)
                                 .padding(8.dp)
