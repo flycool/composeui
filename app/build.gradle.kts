@@ -1,7 +1,8 @@
 plugins {
     id("composeui.android.application")
     id("composeui.android.hilt")
-    alias(libs.plugins.compose.compiler)
+    //alias(libs.plugins.compose.compiler)
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 android {
@@ -29,11 +30,11 @@ android {
     }
 }
 
-composeCompiler {
-    enableExperimentalStrongSkippingMode = false
-    reportsDestination = layout.buildDirectory.dir("compose_compiler")
-    stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
-}
+//composeCompiler {
+//    enableExperimentalStrongSkippingMode = false
+//    reportsDestination = layout.buildDirectory.dir("compose_compiler")
+//    stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
+//}
 
 kotlin {
     sourceSets.all {
@@ -59,6 +60,8 @@ dependencies {
 //    implementation("io.coil-kt:coil-gif:2.5.0")
 
     implementation("androidx.biometric:biometric:1.1.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
 
     // Accompanist permission
