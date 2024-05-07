@@ -32,6 +32,7 @@ import com.compose.sample.composeui.decorationtextfield.DecorationTextField
 import com.compose.sample.composeui.draganddrop.indicator.Carousel
 import com.compose.sample.composeui.dragfood.DragDropMainScreen
 import com.compose.sample.composeui.edgetoedge.DragBoxContent
+import com.compose.sample.composeui.edgetoedge.DrogBoxContentScreen
 import com.compose.sample.composeui.edgetoedge.NavEdgeToEdgeScreen
 import com.compose.sample.composeui.emoji.FireEmoji
 import com.compose.sample.composeui.glovo.GlovoScreen
@@ -65,7 +66,6 @@ class MainActivity : AppCompatActivity() {
     private val imageViewModel by viewModels<ImageWorkerViewModel>()
     private val splashScreenViewModel by viewModels<SplashScreenViewModel>()
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -114,27 +114,7 @@ class MainActivity : AppCompatActivity() {
                     composable<Route.InvitationCard> { ThreadsInviteCard() }
                     composable<Route.Slider> { CustomSlider() }
                     composable<Route.Playerprogressbar> { ProgressBar(songDuration = "5.23") }
-                    composable<Route.Dragbox> {
-                        val systemBarStyle by remember {
-                            val defaultSystemBarColor = Color.TRANSPARENT
-                            mutableStateOf(
-                                SystemBarStyle.auto(
-                                    lightScrim = defaultSystemBarColor,
-                                    darkScrim = defaultSystemBarColor
-                                )
-                            )
-                        }
-                        LaunchedEffect(systemBarStyle) {
-                            enableEdgeToEdge(
-                                statusBarStyle = systemBarStyle,
-                                navigationBarStyle = systemBarStyle
-                            )
-                        }
-                        DragBoxContent (
-                            changeSystemBarStyle = {
-                            }
-                        )
-                    }
+                    composable<Route.Dragbox> { DrogBoxContentScreen() }
                     composable<Route.Lookaheadscope> { LookAheadContent() }
                     composable<Route.Containertransform2> { ContainerTransform() }
                     composable<Route.Draggableindicator> { Carousel() }
@@ -206,7 +186,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         val uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent?.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
@@ -228,5 +208,6 @@ class MainActivity : AppCompatActivity() {
         imageViewModel.updateWorkId(request.id)
         workManager.enqueue(request)
     }
+
 }
 

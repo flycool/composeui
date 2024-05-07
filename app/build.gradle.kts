@@ -36,13 +36,13 @@ android {
 //    stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
 //}
 
-kotlin {
-    sourceSets.all {
-        languageSettings {
-            languageVersion = "2.0"
-        }
-    }
-}
+//kotlin {
+//    sourceSets.all {
+//        languageSettings {
+//            languageVersion = "2.0"
+//        }
+//    }
+//}
 
 
 dependencies {

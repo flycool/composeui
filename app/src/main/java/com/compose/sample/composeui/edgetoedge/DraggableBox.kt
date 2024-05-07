@@ -1,6 +1,8 @@
 package com.compose.sample.composeui.edgetoedge
 
 import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -31,12 +33,37 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.compose.sample.composeui.R
 import com.compose.sample.composeui.ui.theme.ComposeuiTheme
+
+@Composable
+fun DrogBoxContentScreen(modifier: Modifier = Modifier) {
+    val context = LocalContext.current as AppCompatActivity
+    val systemBarStyle by remember {
+        val defaultSystemBarColor = android.graphics.Color.TRANSPARENT
+        mutableStateOf(
+            SystemBarStyle.auto(
+                lightScrim = defaultSystemBarColor,
+                darkScrim = defaultSystemBarColor
+            )
+        )
+    }
+    LaunchedEffect(systemBarStyle) {
+        context.enableEdgeToEdge(
+            statusBarStyle = systemBarStyle,
+            navigationBarStyle = systemBarStyle
+        )
+    }
+    DragBoxContent (
+        changeSystemBarStyle = {
+        }
+    )
+}
 
 @Composable
 fun DragBoxContent(
