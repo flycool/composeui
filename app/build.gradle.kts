@@ -1,8 +1,9 @@
 plugins {
     id("composeui.android.application")
     id("composeui.android.hilt")
-    //alias(libs.plugins.compose.compiler)
+    // alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "1.9.22"
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 }
 
 android {
