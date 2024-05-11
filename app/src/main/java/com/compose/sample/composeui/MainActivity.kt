@@ -189,9 +189,9 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         val uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent?.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
+            intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
         } else {
-            intent?.getParcelableExtra(Intent.EXTRA_STREAM)
+            intent.getParcelableExtra(Intent.EXTRA_STREAM)
         } ?: return
 
         imageViewModel.updateUri(uri)
