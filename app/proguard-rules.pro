@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+# You can specify any path and filename. // 输出 R8 在构建项目时应用的所有规则的完整报告
+-printconfiguration /build/tmp/full-r8-config.txt
