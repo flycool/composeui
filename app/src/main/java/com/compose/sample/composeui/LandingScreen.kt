@@ -18,6 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import com.compose.sample.composeui.nav.Route
+import com.compose.sample.composeui.nav.routes
 import com.compose.sample.composeui.ui.theme.ComposeuiTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,17 +44,6 @@ fun LandingScreen(naviate: (Route) -> Unit) {
                 }
             ) { innerPadding ->
                 LazyColumn(contentPadding = innerPadding) {
-//                    itemsIndexed(Destination.entries.toTypedArray()) { index, item ->
-//                        Text(text = index.toString() + " " + item.name,
-//                            modifier = Modifier
-//                                .clickable {
-//                                    naviate(item)
-//                                }
-//                                .defaultMinSize(minHeight = 48.dp)
-//                                .padding(8.dp)
-//                                .fillMaxWidth()
-//                        )
-//                    }
                     itemsIndexed(routes) { index, route ->
                         Text(
                             text = "$index $route",
